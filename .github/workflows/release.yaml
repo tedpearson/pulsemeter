@@ -37,15 +37,12 @@ jobs:
       - name: Get the tag
         run: echo "TAG_NAME=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
-      - name: Get dependencies
-        run: go get -v -t -d ./...
-
       - name: Test
         run: go test -v .
 
       - name: Build
         run: |
-          env GOOS=${{matrix.GOOS}} GOARCH=${{matrix.GOARCH}} go build -ldflags "$LDFLAGS" -v -o ${{env.executable}} .
+          env GOOS=${{matrix.GOOS}} GOARCH=${{matrix.GOARCH}} go build -v -o ${{env.executable}} .
 
       - name: Create or update release
         id: create_release
