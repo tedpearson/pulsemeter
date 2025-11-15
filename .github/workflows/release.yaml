@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     name: Build
+    permissions:
+      contents: write
     strategy:
       matrix:
         GOOS: [ linux, darwin ]
